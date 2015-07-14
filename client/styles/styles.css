@@ -13,6 +13,7 @@ body {
     padding: 50px 60px;
     border: solid #ddd;
     border-width: 0 1px 1px 1px;
+    height: 90%;
 }
 
 #main h1 {
@@ -84,10 +85,10 @@ form input[type=text] {
 }
 
 #messages {
+    position: relative;
     overflow-y: scroll;
-    height: 90%;
     border: 1px solid #e9eaec;
     border-radius: 10px;
     min-width: 400px;
-    z-index: -1;
+    min-height: 500px;
 }

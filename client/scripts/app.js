@@ -40,31 +40,45 @@ app.fetch = function() {
   });
 };
 
+//func: popup user name input at the beginning of the app
 app.login = function() {
-  $("#logindiv").css("display", "block");
-  $(document).on("click", "#login", function() {
-    user = $("#name").val();
-    if (user === "") {
-      user = "Guest";
-    }
-    app.username = user;
-    $("#logindiv").css("display", "none");
-    $("#username").text(app.username);
-  });
+  console.log('here');
+  // $("#logindiv").css("display", "inline");
+  $('#logindiv').show();
+  // $('#logindiv').hide()
+  // debugger 
 };
 
+$(document).on("click", "#login", function() {
+  user = $("#name").val();
+  if (user === "") {
+    user = "Guest";
+  }
+  app.username = user;
+  $("#logindiv").css("display", "none");
+  $("#username").text(app.username);
+}); //#login.click()
+
+//func: accepts array of room names and adds an option to the dropdown for each
 app.printRooms = function(rooms) {
   $('#chatrooms').html(''); //clear previous options
-  var defaultOption = $('<option></option>').val('All Rooms').text('All Rooms');
+  
+  var defaultOption = $('<option selected></option>').val('All Rooms').text('All Rooms');
   $('#chatrooms').append(defaultOption);
+
   for (var key in rooms) {
     var newOptions = $('<option></option>').val(key).text(key);
+    if(key===window.chatRoom){
+      newOptions.attr('selected',true);
+    } //if
     $('#chatrooms').append(newOptions);
-  }
-  var fakeOption = $('<option></option>').val('').text('-------------');
-  $('#chatrooms').prepend(fakeOption);
+  }  //for
+  // debugger
+  // var fakeOption = $('<option></option>').val('').text('-------------');
+  // $('#chatrooms').prepend(fakeOption);
 };
 
+//func: accepts array of message objects, and returns all unique room properties from those messages
 app.findRooms = function(messageArray) { //should accept results array from window.data
 
   var result = {};
@@ -80,17 +94,19 @@ app.findRooms = function(messageArray) { //should accept results array from wind
   return result;
 };
 
-app.login();
+//************** Initialize app
+$(document).ready(function(){
+  // app.login();
+  setInterval(app.fetch, 1000); //display messages
+  app.fetch(); //fetch stuff for the first time
+  setTimeout(function() { //wait for the fetch to return data, then update room dropdown
+    app.init();
+  }, 1500); //setTimeout
+}); //document ready
+//************** 
 
-setInterval(app.fetch, 1000); //display messages
 
-app.fetch();
-
-setTimeout(function() {
-  app.init();
-
-}, 1500);
-
+//func: print posts to the page
 app.displayPosts = function(data, roomname) {
   $('#messages').html('');
   var results = data.results;
@@ -134,10 +150,6 @@ $(document).on('click', '#submit', function() {
   }
 });
 
-$(document).on('click', '#chatrooms', function() {
-  console.log('clicked');
-  app.init();
-});
 
 // func: Befriend user
 $(document).on('click', '#messages .chatName', function() {
@@ -154,8 +166,9 @@ $(document).on('click', '#messages .chatName', function() {
 $(document).on('change', 'select', function() {
   console.log('clicked options');
   window.chatRoom = $("#chatrooms").val();
+  app.init(); //reload options after chatRoom has been set
   // app.init();
-});
+}); //select.change()
 
 /*
 

@@ -18,7 +18,7 @@ body {
 #main h1 {
     margin-top: 0;
     font-size: 35px;
-    margin-bottom: 5px;
+    margin-bottom: 30px;
     padding: 5px;
 }
 
@@ -81,4 +81,13 @@ form input[type=text] {
 
 .spinner img {
     padding: 10px;
+}
+
+#messages {
+    overflow-y: scroll;
+    height: 90%;
+    border: 1px solid #e9eaec;
+    border-radius: 10px;
+    min-width: 400px;
+    z-index: -1;
 }

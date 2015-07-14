@@ -2,8 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>chatterbox</title>
+    <title class="logo">chatterbox</title>
     <link rel="stylesheet" href="styles/styles.css">
+    <link href='http://fonts.googleapis.com/css?family=Rajdhani:400,700' rel='stylesheet' type='text/css'>
 
     <!-- dependencies -->
     <script src="bower_components/jquery/jquery.min.js"></script>
@@ -11,12 +12,14 @@
     <!-- your scripts -->
     <script src="env/config.js"></script>
     <script src="scripts/app.js"></script>
+
   </head>
   <body>
     <div id="main">
       <h1>chatterbox</h1>
       <input type="text" id='formUserName' name="text">
       <!-- <input type="text" id='formUserName' name="text"> -->
+      <div id="signedin">signed in as: <span id="username"></span></div>
       <select id='chatrooms'>
         
       </select>
@@ -30,11 +33,24 @@
            <!-- <input type="text" name="text"> -->
          </form>
       </div> <!-- form -->
-      <!-- Your HTML goes here! -->
       <div id="messages">
-
-
       </div> <!-- messages -->
     </div> <!-- main -->
+
+    <!-- login form -->
+    <div id="logindiv">
+      <form class="form" action="#" id="loginform">
+        <div class="logo" id="loginlogo">chatterbox</div>
+        <br>
+        <br>
+        <br>
+        <h4><font color="#4d93f5">Please enter username or login as Guest</font></h4>
+        <label>Username: </label>
+        <input type="text" id="name" />
+        <br>
+        <button type="button" class="button" id="login">Login</button>
+        <br>
+      </form>
+    </div>
   </body>
 </html>

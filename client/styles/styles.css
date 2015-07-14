@@ -92,3 +92,27 @@ form input[type=text] {
     min-width: 400px;
     min-height: 500px;
 }
+
+#messages .chatName{
+    color: blue;
+}
+
+#messages .chatName:hover{
+    cursor: pointer;
+    color: green;
+    text-decoration: underline;
+
+}
+
+#messages .friends{
+    font-weight: bold;
+
+}
+
+
+
+
+
+
+
+

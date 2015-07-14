@@ -1,5 +1,6 @@
 // YOUR CODE HERE:
 window.friends = {};
+window.data = {};
 var app = {};
 
 app.username = '';
@@ -134,10 +135,11 @@ app.displayPosts = function(data, roomname) {
 };
 
 //write message
-$(document).on('click', '#submit', function() {
-  var input = $('input').val();
+$(document).on('click', '#submitMessage', function() {
+  var input = $('#inputMessage').val();
+  console.log('input message:', input);
   var message = {};
-  message['username'] = app.username;
+  message['username'] = app.username === '' ? "Guest" : app.username;
   message['text'] = input;
   message['roomname'] = window.chatRoom;
 
@@ -146,8 +148,23 @@ $(document).on('click', '#submit', function() {
     return;
   } else {
     app.send(message);
-    $('input').val('');
+    $('#inputMessage').val('');
   }
+});
+
+//func: create a new room
+$(document).on('click', '#submitRoom', function() {
+  var input = $('#inputRoom').val();
+  $('#inputRoom').val('');
+  window.chatRoom = input; 
+
+  var message = {};
+  message['username'] = "WelcomeBot";
+  message['text'] = "Welcome to "+window.chatRoom;
+  message['roomname'] = window.chatRoom;
+  app.send(message);
+  setTimeout(app.init, 1000);
+
 });
 
 

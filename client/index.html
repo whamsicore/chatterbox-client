@@ -14,21 +14,19 @@
     <script src="scripts/app.js"></script>
 
   </head>
+
   <body>
     <div id="main">
       <h1 class='logo'>chatterbox</h1>
-      <div id="signedin">signed in as: <span id="username"></span></div>
+      <div id="signedin">signed in as: <span id="username">Guest</span></div>
       <select id='chatrooms'>
-        
       </select>
       <div id="form">
          <form>
-           Write a message! <br>
-           <input type="text" name="text">
-           <button type='button' id='submit'>Submit</button>
-           <!-- <br> -->
-           <!-- Last name:<br> -->
-           <!-- <input type="text" name="text"> -->
+           <input type="text" id='inputMessage' placeholder="Write a message" >
+           <button type='button' id='submitMessage'>Submit</button>
+           <input type="text" id='inputRoom' placeholder="New Room Name" >
+           <button type='button' id='submitRoom'>Submit</button>
          </form>
       </div> <!-- form -->
       <div id="messages">
